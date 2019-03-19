@@ -29,15 +29,13 @@ async def verify(ctx, *arg):
                 username = arg[0][1:len(arg[0])]
             else:
                 username = arg[0]
-            url='https://www.reddit.com/'+username;
+            url='https://old.reddit.com/'+username+'/about.json';
             header={'user-agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36'}
             r=requests.get(url=url, headers=header);
-            scraped=r.content[r.content.find(b's1mjkkvq-6 jYRLkf')+19:r.content.find(b'<', r.content.find(b's1mjkkvq-6 jYRLkf')+19)];
-            if(r.content.find(b's1mjkkvq-6 jYRLkf')<=0):
-                await bot.send_message(channel, "I wasn't able to find a reddit account with that username.");
-            else:
+            try:
+                data = r.json()['data']['subreddit']['public_description'];
                 try:
-                    scraped=int(scraped);
+                    scraped=int(data);
                     if(scraped==int(member.id)):
                         try:
                             role = discord.utils.get(member.server.roles, id="529724186982350868")
@@ -50,6 +48,8 @@ async def verify(ctx, *arg):
                         await bot.send_message(channel, "Change your profile description to "+str(member.id)+" and run this command again!");
                 except:
                     await bot.send_message(channel, "Change your profile description to "+str(member.id)+" and run this command again!");
+            except:
+                await bot.send_message(channel, "I wasn't able to find a reddit account with that username.");
         except:
             await bot.send_message(channel, "Please follow the form of ``!verify u/username`` and try again.");
 
