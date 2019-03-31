@@ -45,11 +45,11 @@ async def verify(ctx, *arg):
                         except:
                             await bot.send_message(channel, "Sorry i don't have permissions to give roles or change nicknames.");
                     else:
-                        await bot.send_message(channel, "Change your profile description to "+str(member.id)+" and run this command again!");
+                        await bot.send_message(channel, "Change your reddit profile description to "+str(member.id)+" and run this command again!");
                 except:
                     await bot.send_message(channel, "Change your profile description to "+str(member.id)+" and run this command again!");
             except:
-                await bot.send_message(channel, "I wasn't able to find a reddit account with that username.");
+                await bot.send_message(channel, "I wasn't able to find a reddit account with that username, or the reddit account is old, please update or wait for the bot to update.");
         except:
             await bot.send_message(channel, "Please follow the form of ``!verify u/username`` and try again.");
 
