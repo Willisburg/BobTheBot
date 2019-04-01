@@ -20,7 +20,8 @@ async def np(ctx, *arg):
     message = ctx.message;
     channel = message.channel;
     member = message.author;
-    await bot.send_message(channel, "no problem :D");
+    if(member.id == "360744809717039104"):
+        await bot.send_message(channel, "no problem :D");
     
     
     
