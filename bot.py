@@ -16,6 +16,15 @@ async def on_ready():
     print('Successfully joined account: ' + bot.user.name)
 
 @bot.command(pass_context=True)
+async def np(ctx, *arg):
+    message = ctx.message;
+    channel = message.channel;
+    member = message.author;
+    await bot.send_message(channel, "no problem :D");
+    
+    
+    
+@bot.command(pass_context=True)
 async def verify(ctx, *arg):
     message = ctx.message;
     channel = message.channel;
